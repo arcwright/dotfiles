@@ -47,7 +47,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-force_color_prompt=yes
+#force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -60,9 +60,21 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# PS1 colours (\e=\033)
+GREY="\[\e[01;30m\]"
+RED="\[\e[01;31m\]"
+GREEN="\[\e[01;32m\]"
+YELLOW="\[\e[01;33m\]"
+BLUE="\[\e[01;34m\]"
+PINK="\[\e[01;35m\]"
+CYAN="\[\e[01;36m\]"
+WHITE="\[\e[00m\]"
+PROMPT=$'\xe2\x9e\xa4 '
+
 if [ "$color_prompt" = yes ]; then
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[01;35m\]@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+    PS1="$GREY\u$RED@\h$WHITE:$PINK\w$WHITE\n"$PROMPT
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
